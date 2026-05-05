@@ -26,3 +26,4 @@ jobs:
         run: ./scripts/test.sh
           echo "Running tests..."
           # Add your test commands here, e.g., pytest or unittest
+
