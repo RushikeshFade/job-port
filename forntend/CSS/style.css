@@ -5,7 +5,7 @@ body{
 }
 
 header{
-    background:#1e3a8a;
+    background:#e9e9e9;
     color:white;
     padding:15px;
 }
@@ -16,7 +16,7 @@ header{
 }
 
 nav a{
-    color:white;
+    color:rgb(255, 0, 0);
     margin-right:20px;
     text-decoration:none;
 }
@@ -39,7 +39,7 @@ input, textarea{
 button{
     padding:10px 20px;
     background:#2563eb;
-    color:white;
+    color:rgb(27, 11, 11);
     border:none;
     cursor:pointer;
 }
