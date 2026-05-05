@@ -1,0 +1,28 @@
+name: Workflow Practice
+
+on:
+  push:
+    branches:[main]
+  pull_request:
+    branches:[main]
+jobs:
+  pipelines:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      #to give permission to the script to run    
+      - name: Permission
+        run: chmod +x scripts/*.sh
+        
+      - name: Install dependencies
+        run: ./scripts/install.sh
+
+      - name: Run tests
+        run: ./scripts/test.sh
+          echo "Running tests..."
+          # Add your test commands here, e.g., pytest or unittest
