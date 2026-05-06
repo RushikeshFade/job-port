@@ -1,21 +1,44 @@
-from fastapi import FastAPI
-from database import Base, engine
+from fastapi import APIRouter, Depends
+from pydantic import BaseModel
+from sqlalchemy.orm import Session
+from database import get_db
+from models.user import User
+from auth import hash_password, verify_password, create_access_token
 
-from routes.auth_routes import router as auth_router
-from routes.job_routes import router as job_router
-from routes.application_routes import router as application_router
+router = APIRouter()
 
-app = FastAPI()
+# Define request models
+class RegisterRequest(BaseModel):
+    name: str
+    email: str
+    password: str
+    role: str
 
-# Create database tables
-Base.metadata.create_all(bind=engine)
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
-# Include routes
-app.include_router(auth_router)
-app.include_router(job_router)
-app.include_router(application_router)
+@router.post("/register")
+def register(request: RegisterRequest, db: Session = Depends(get_db)):
+    user = User(
+        name=request.name,
+        email=request.email,
+        password=hash_password(request.password),
+        role=request.role
+    )
+    db.add(user)
+    db.commit()
+    return {"message": "User created"}
 
-
-@app.get("/")
-def home():
-    return {"message": "Job Portal API running"}
+@router.post("/login")
+def login(request: LoginRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == request.email).first()
+    
+    if not user:
+        return {"error": "User not found"}
+    
+    if not verify_password(request.password, user.password):
+        return {"error": "Wrong password"}
+    
+    token = create_access_token({"user_id": user.id})
+    return {"access_token": token}
