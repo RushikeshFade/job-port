@@ -22,6 +22,7 @@ jobs:
         run: |
           cd .github/workflows
           touch main2.yml
+          ls  -l
           sleep 10
           cd .github/workflows/main2.yml
           echo "heelo k n " >> main2.yml
