@@ -22,10 +22,24 @@ jobs:
         run: |
           cd .github/workflows
           touch main2.yml
+          sleep 10
+      
       - name: List files again
-        run: ls -la .github/workflows
+        run: |
+          ls -la .github/workflows
+          sleep 10
         
-
+      - name: add text to file
+        run: |
+          cd .github/workflow/main2.yml
+          echo "heelo k n " >> main2.yml
+          sleep 10
+      - name: change the chmod
+        run: |
+          cd .github/workflow/main2.yml
+          chmod +x main2.yml
+          bash main2.yml
+          sleep 10
       
 
  
