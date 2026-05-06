@@ -12,17 +12,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
-      # to give permission to the script to run    
-      - name: Permission
+          
+      - name: Give execute permission to scripts
         run: chmod +x scripts/*.sh
         
       - name: Install dependencies
         run: ./scripts/install.sh
 
+      - name: Start API Server
+        run: |
+          cd backend
+          python -m uvicorn main:app --host 127.0.0.1 --port 8000 &
+          sleep 5
+          echo "API Server started"
+        
       - name: Run tests
         run: |
           echo "Running tests..."
