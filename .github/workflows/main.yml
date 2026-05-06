@@ -18,10 +18,13 @@ jobs:
         uses: actions/checkout@v4
       - name: list files
         run: ls -la
-      - name: Add a yml file
+      - name: Add a yml file and text to it
         run: |
           cd .github/workflows
           touch main2.yml
+          sleep 10
+          cd .github/workflows/main2.yml
+          echo "heelo k n " >> main2.yml
           sleep 10
       
       - name: List files again
@@ -29,14 +32,11 @@ jobs:
           ls -la .github/workflows
           sleep 10
         
-      - name: add text to file
-        run: |
-          cd .github/workflow/main2.yml
-          echo "heelo k n " >> main2.yml
-          sleep 10
+      
+          
       - name: change the chmod
         run: |
-          cd .github/workflow/main2.yml
+          cd .github/workflows/main2.yml
           chmod +x main2.yml
           bash main2.yml
           sleep 10
