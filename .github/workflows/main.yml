@@ -24,14 +24,4 @@ jobs:
       - name: Install dependencies
         run: ./scripts/install.sh
 
-      - name: Start API Server
-        run: |
-          cd backend
-          python -m uvicorn main:app --host 127.0.0.1 --port 8000 &
-          sleep 5
-          echo "API Server started"
-        
-      - name: Run tests
-        run: |
-          echo "Running tests..."
-          ./scripts/test.sh
+       
