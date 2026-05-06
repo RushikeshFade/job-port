@@ -16,17 +16,19 @@ fi
 
 # 2. Register User
 echo "Testing User Registration..."
-register_response=$(curl -s -X POST $BASE_URL/register \
--H "Content-Type: application/json" \
--d '{"email":"test@example.com","password":"123456"}')
+response = requests.post(
+    "http://127.0.0.1:8000/register",
+    json={"name": "Test User", "email": "test@example.com", "password": "password123"}
+)
 
 echo $register_response
 
 # 3. Login User
 echo "Testing Login..."
-login_response=$(curl -s -X POST $BASE_URL/login \
--H "Content-Type: application/json" \
--d '{"email":"test@example.com","password":"123456"}')
+response = requests.post(
+    "http://127.0.0.1:8000/login",
+    json={"email": "test@example.com", "password": "password123"}
+)
 
 echo $login_response
 
