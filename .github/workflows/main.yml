@@ -2,9 +2,9 @@ name: Workflow Practice
 
 on:
   push:
-    branches:[main]
+    branches: [main]
   pull_request:
-    branches:[main]
+    branches: [main]
 jobs:
   pipelines:
     runs-on: ubuntu-latest
@@ -20,9 +20,11 @@ jobs:
         run: chmod +x scripts/*.sh
         
       - name: Install dependencies
-        run: ./scripts/install.sh
+        run: |
+          ./scripts/install.sh
 
       - name: Run tests
-        run: ./scripts/test.sh
-          echo "Running tests..."
+        run: | 
+           echo "Running tests..."
+           ./scripts/test.sh
           # Add your test commands here, e.g., pytest or unittest
