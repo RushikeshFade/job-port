@@ -37,7 +37,7 @@ jobs:
           
       - name: change the chmod
         run: |
-          cd .github/workflows/main2.yml
+          cd .github/workflows
           chmod +x main2.yml
           bash main2.yml
           sleep 10
