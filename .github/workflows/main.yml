@@ -19,7 +19,7 @@ jobs:
         run: ls -l
 
       - name: make script executable
-        run: chmod +x main.sh
+        run: chmod +x scripts/main.sh
 
       - name: run script
         run: main.sh       
