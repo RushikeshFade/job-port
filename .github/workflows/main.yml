@@ -12,29 +12,20 @@ jobs:
     runs-on: ubuntu-Latest
 
     steps:
-      - name: checkout
-        run: ls -l
-
       - name: checkout code
         uses: actions/checkout@v4
 
       - name: list files
         run: ls -l
 
-      - name: Add a yml file and text to it
-        run: |
-          cd .github/workflows
-          touch main2.yml
-          ls  -l
-          sleep 10
+      - name: make script executable
+        run: chmod +x main3.sh
+
+      - name: run script
+        run: main3.sh       
           
-          echo "heelo" >main2.yml
-          sleep 10
       
-      - name: List files again
-        run: |
-          ls -l .github/workflows
-          sleep 10
+      
         
       
       
