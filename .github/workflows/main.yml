@@ -25,7 +25,7 @@ jobs:
           ls  -l
           sleep 10
           
-          echo "heelo k n " >> .github/workflows/main2.yml
+          echo "heelo" >main2.yml
           sleep 10
       
       - name: List files again
