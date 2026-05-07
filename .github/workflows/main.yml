@@ -24,8 +24,8 @@ jobs:
           touch main2.yml
           ls  -l
           sleep 10
-          cd .github/workflows/main2.yml
-          echo "heelo k n " >> main2.yml
+          
+          echo "heelo k n " >> .github/workflows/main2.yml
           sleep 10
       
       - name: List files again
